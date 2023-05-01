@@ -2,6 +2,6 @@
     "name":"ASSIGNMENT 2",
     "description": "API REST Express - Desarrollo",
     "configDB":{
-        "host":"pureba-db-server"
+        "host":"dev-db-server"
     }
 }

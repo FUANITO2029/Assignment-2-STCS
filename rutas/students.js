@@ -60,9 +60,11 @@ ruta.put('/:id', (req, res)=>{
         return;
     }
     const {error, value} = validateStudent(req.body.nombre, req.body.email, req.body.career);
-    if(existEmail(req.body.email)){
-        res.send('"email" already exists');
-        return;
+    if(student.email !== req.body.email){
+        if(existEmail(req.body.email)){
+            res.send('"email" already exists');
+            return;
+        }
     }
     if(!error){
         // Actualiza el nombre
@@ -75,7 +77,6 @@ ruta.put('/:id', (req, res)=>{
         res.status(400).send(message);
     }
     return; 
-
 });
 
 ruta.delete('/:id', (req, res)=>{

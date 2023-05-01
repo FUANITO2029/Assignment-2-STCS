@@ -1,12 +1,13 @@
+// import the packages to use
 const inicioDebug = require('debug')('app:inicio');
-const dbDebug = require('debug')('app:db');
+const dbDebug = require('debug')('app:produccion');
 const config = require('config');
 const morgan = require('morgan');
 
 const express = require('express');
 const app = express();
 
-// Imports 
+// Imports the routes to use
 const objStudents = require('./rutas/students');
 const events = require('./rutas/events');
 const record = require('./rutas/records');
@@ -32,7 +33,8 @@ if(app.get('env') === 'development'){
     // Muestra el mensaje de depuración 
     inicioDebug('Morgan está habilitado'); 
 }
-dbDebug('Conectando con la base de datos...');
+dbDebug('Conectando al servicio...');
+
 
 const port = process.env.PORT || 3000;
 
@@ -50,4 +52,4 @@ app.listen(port, () => {
 
 // SETX DEBUG " " 
 //      app:inicio
-//      app:db
+//      app:produccion
