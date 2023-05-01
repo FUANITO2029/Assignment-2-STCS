@@ -67,7 +67,8 @@ ruta.delete('/', (req, res)=>{
          res.status(404).send(`The student "${idStudent}" does not exist`);
          return;
      }
-
+    
+    // Valida que el estudiante no esté en el evento
     const StudentInEvent = event.listStudents.find(s => s === idStudent);
     if(!StudentInEvent){
         res.send(`The student "${idStudent}" is not registered in the event ${idEvent}`);

@@ -15,11 +15,12 @@ let students = [];
 let idStudent = 1;
 
 ruta.post('/', (req, res)=>{
-    const {error, value} = validateStudent(req.body.nombre, req.body.email, req.body.career);
+    // Validate that the email does not exist
     if(existEmail(req.body.email)){
         res.send('"email" already exists');
         return;
     }
+    const {error, value} = validateStudent(req.body.nombre, req.body.email, req.body.career);
     if(!error){
         let student = new Student;
         student.id = idStudent;
@@ -59,13 +60,13 @@ ruta.put('/:id', (req, res)=>{
         res.status(404).send(`The student ${id} does not exist`);
         return;
     }
-    const {error, value} = validateStudent(req.body.nombre, req.body.email, req.body.career);
     if(student.email !== req.body.email){
         if(existEmail(req.body.email)){
             res.send('"email" already exists');
             return;
         }
     }
+    const {error, value} = validateStudent(req.body.nombre, req.body.email, req.body.career);
     if(!error){
         // Actualiza el nombre
         student.nombre = value.nombre;
